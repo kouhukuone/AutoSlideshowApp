@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     Button mRunStopButton;
 
     Timer mTimer;
-    int mTimerSec = 0;
     Handler mHandler = new Handler();
 
     Cursor cursor ;
@@ -61,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         mNextButton = (Button) findViewById(R.id.next_button);
         mPrevButton = (Button) findViewById(R.id.prev_button);
         mRunStopButton = (Button) findViewById(R.id.run_stop_button);
+        mRunStopButton.setText("再生");
 
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
                         mNextButton.setEnabled(false);
                         mPrevButton.setEnabled(false);
                         onOff = true;
+                        mRunStopButton.setText("停止");
                         mTimer = new Timer();
                         mTimer.schedule(new TimerTask(){
                             @Override
@@ -136,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         mNextButton.setEnabled(true);
                         mPrevButton.setEnabled(true);
+                        mRunStopButton.setText("再生");
                         onOff = false;
                         if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
                             if(mTimer != null){
